@@ -1,9 +1,11 @@
 name: Build & Release Python Executables
 
 on:
+  release:
+    types: [published]
   push:
     tags:
-      - "v*"      # trigger on version tags
+      - "v*"
   workflow_dispatch:
 
 env:
