@@ -7,9 +7,8 @@ on:
   workflow_dispatch:
 
 env:
-  APP_NAME: spamming_tool
+  APP_NAME: SpammingTool
   ENTRY_POINT: main.py
-  DEB_NAME: ${{ env.APP_NAME//_/- }}
 
 jobs:
   build:
@@ -30,7 +29,6 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        shell: bash
         run: |
           python -m pip install --upgrade pip
           pip install pyinstaller
@@ -78,9 +76,9 @@ jobs:
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
           mkdir -p deb/usr/local/bin/
-          cp dist/${APP_NAME}-linux deb/usr/local/bin/${DEB_NAME}
+          cp dist/${APP_NAME}-linux deb/usr/local/bin/${APP_NAME}
           mkdir -p deb/DEBIAN
-          echo "Package: ${DEB_NAME}
+          echo "Package: ${APP_NAME}
           Version: 1.0
           Architecture: amd64
           Maintainer: You
